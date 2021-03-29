@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>初识Vue</title>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+	<body>
+		<!-- 准备一个容器 -->
+		<div id="root">
+			<h1>Hello,{{school}}</h1>
+		</div>
+
+		<script type="text/javascript" >
+			//创建一个Vue实例，要想使用Vue必须创建这个实例，且传入配置对象
+			new Vue({
+				el:'#root', //el用于指定当前Vue实例为哪个容器服务，值是选择器字符串，选择器语法同jQuery
+				data:{ //data用于存储数据，数据供el所指定的容器使用，值是一个对象，类似于React中的state
+					//data中一组一组的key-value是程序员自定义的
+					school:'尚硅谷'
+				}
+			})
+		</script>
+	</body>
+</html>
