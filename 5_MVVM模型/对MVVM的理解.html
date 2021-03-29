@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>对MVVM的理解</title>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+	<body>
+		<!-- 
+			对MVVM的理解
+					MVVM模型：
+								1. M：模型(Model) ：对应data中的数据
+								2. V：视图(View) ：模板代码
+								3. VM：视图模型(ViewModel) ： Vue实例对象
+					观察发现：
+								1.new Vue()时候传入的data中的一组一组的key-value,在vm上都有。
+								2.通过vm.xxx修改数据后，页面中用到xxx的地方会自动更新。
+								3.vm身上及Vue原型上的所有属性，在Vue模板代码中可以直接使用。
+		 -->
+		<!-- 准备好一个容器-->
+		<div id="root">
+			<h2>学校名称：{{schoolName}}</h2>
+			<h2>学校地址：{{address}}</h2>
+			<h2>我学的是：{{subject}}</h2>
+			<!-- 
+				<h2>测试一下：{{$options}}</h2>
+				<h2>测试一下：{{$emit}}</h2>
+				<h2 v-bind:x="_c">测试一下</h2>
+			-->
+		</div>
+
+		<script type="text/javascript" >
+			Vue.config.productionTip = false //关闭生产环境的提示
+			const vm = new Vue({
+				el:'#root',
+				data:{
+					schoolName:'尚硅谷',
+					address:'宏福科技园',
+					subject:'前端',
+				}
+			})
+			console.log(vm)
+		</script>
+	</body>
+</html>
