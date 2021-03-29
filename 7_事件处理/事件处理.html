@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>事件处理</title>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+	<body>
+		<!-- 
+			事件绑定注意事项：
+						1.事件的回调都配置在methods对象中
+						2.methods中的函数，都是被Vue所管理的函数，this的指向是vm 或 组件实例对象。
+						3.methods中的配置的函数，不要用箭头函数！！！！，否则this就不是vm了。
+						4.所有不被Vue所管理的函数（定时器的回调函数、ajax的回调函数、Promise的回调函数），最好写成箭头函数。
+			Vue中常用的按键别名：
+						回车 => enter
+						换行 => tab
+						退格 => delete (捕获“删除”和“退格”键)
+						退出 => esc
+						空格 => space
+						上 => up
+						下 => down
+						左 => left
+						右 => right
+			Vue中常用的事件修饰符：
+						阻止默认事件：stop
+						阻止冒泡：prevent
+						一次性事件：once
+			Vue中常用的按键修饰符(只有按下这些按键，同时再去按别的，才触发事件)--用的少：
+						ctrl
+						alt
+						shift
+						meta
+		-->
+		<!-- 准备好一个容器-->
+		<div id="root">
+			
+		</div>
+	</body>
+</html>

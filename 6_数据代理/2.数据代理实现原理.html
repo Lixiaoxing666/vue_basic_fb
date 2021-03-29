@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>数据代理的原理</title>
+	</head>
+	<body>
+		<script type="text/javascript" >
+
+			//模拟Vue收到了程序员传递进来的data，存到了_data中
+			let _data = {
+				name:"尚硅谷"
+			}
+
+			//模拟一个vm
+			let vm = {
+				$attrs:'123',
+				$listeners:[],
+				$a:1,
+				$b:2,
+			}
+
+			//增强对象（给对象追加指定属性）
+			Object.defineProperty(vm,'name',{
+				// value:_data.name,
+				// writable:true, //控制追加的属性，是否可以被修改，默认值是false
+				// configurable:true, //控制属性是否可以被删除，默认值是false
+				// enumerable:true //控制属性是否可以被枚举，默认值是false
+
+				//当有人读取vm.name时，get就会被调用，且get方法的返回值就作为vm.name的值了
+				get(){
+					console.log('有人读取vm.name了')
+					return _data.name
+				},
+				//当有人修改vm.name时，set就会被调用，且set会接收到要修改的值
+				set(value){
+					console.log('有人修改vm.name了',value)
+					_data.name = value
+				}
+			})
+
+
+			//如下代码是一个错误的示范，会产生死循环
+			/* let personObj = {
+				name:'老刘',
+				age:18,
+			}
+
+			Object.defineProperty(personObj,'sex',{
+				get(){
+					return '女'
+				},
+				set(value){
+					personObj.sex = value
+				}
+			})
+			console.log(personObj) */
+
+
+		</script>
+	</body>
+</html>
