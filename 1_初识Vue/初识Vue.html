@@ -6,9 +6,22 @@
 		<script type="text/javascript" src="../js/vue.js"></script>
 	</head>
 	<body>
-		<!-- 准备一个容器 -->
+		<!-- 
+				初识Vue：
+						1.要让Vue工作，就必须创建一个Vue的实例对象，且传入配置对象。
+						2.<div id="root">中缩写的不是html代码，是Vue的模板语法，所谓模板语法就是html+js的混合体，类似jsx
+						3.{{xxx}}中的xxx能够自动看到data中所有的属性(注意不是data，是data中的属性)，且xxx作为js表达式去解析。
+				备注：
+							1.一个Vue实例只能管理一个容器，真实开发中只有一个Vue实例，其他的都写成组件。
+							2.一个Vue实例和一个容器是一一对应的。
+		-->
+		
+		 <!-- 准备一个容器 -->
 		<div id="root">
-			<h1>Hello,{{school}}</h1>
+			<h1>Hello,{{name}}</h1>
+			<h1>学校名是：{{school.name.toUpperCase()}}</h1>
+			<h1>学校地址：{{school.address}}</h1>
+			<h1>我学的是：{{school.subject()}}</h1>
 		</div>
 
 		<script type="text/javascript" >
@@ -17,7 +30,12 @@
 				el:'#root', //el用于指定当前Vue实例为哪个容器服务，值是选择器字符串，选择器语法同jQuery
 				data:{ //data用于存储数据，数据供el所指定的容器使用，值是一个对象，类似于React中的state
 					//data中一组一组的key-value是程序员自定义的
-					school:'尚硅谷'
+					name:'1125班',
+					school:{
+						name:'atguigu',
+						address:'宏福科技园',
+						subject:function(){return '前端'}
+					}
 				}
 			})
 		</script>
