@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>条件渲染v-show</title>
+		<style>
+			img{
+				width: 100px;
+			}
+		</style>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+	<body>
+		<!-- 准备好一个容器-->
+		<div id="root">
+			<button @click="changeWeather">切换天气</button>
+			<h2>今天天气很{{text}}</h2>
+
+			<div v-show="isHot === 0">
+				<img src="https://s3.ax1x.com/2020/12/13/reC1IA.jpg" alt=""><br/>
+				<span>建议：心静自然凉</span>
+			</div>
+
+			<div v-show="isHot === 1" >
+				<img src="https://img0.baidu.com/it/u=2181452007,1100013642&fm=26&fmt=auto&gp=0.jpg" alt=""><br/>
+				<span>建议：不冷不热就好好学习吧</span>
+			</div>
+
+			<div v-show="isHot === 2">
+				<img src="https://s3.ax1x.com/2020/12/13/reCaqg.jpg" alt=""><br/>
+				<span>建议：穿好你秋裤</span>
+			</div>
+
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		Vue.config.productionTip = false
+		
+		new Vue({
+			el:'#root',
+			data:{
+				isHot:0 //0炎热  1温暖  2寒冷
+			},
+			computed:{
+				text(){
+					if(this.isHot === 0) return '炎热'
+					else if(this.isHot === 1) return '温暖'
+					else return '寒冷'
+				}
+			},
+			methods: {
+				changeWeather(){
+					this.isHot += 1
+					if(this.isHot > 2) this.isHot = 0
+				}
+			},
+		})
+	</script>
+</html>
