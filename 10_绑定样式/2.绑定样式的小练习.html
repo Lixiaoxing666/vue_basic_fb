@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>样式练习</title>
+		<style>
+			.hot{
+				background-color: orange;
+			}
+			.cool{
+				background-color: skyblue;
+			}
+		</style>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+	<body>
+		<!-- 准备好一个容器-->
+		<div id="root">
+			<h2 :class="cname">今天天气很{{weatherText}}</h2>
+			<button @click="change">切换天气</button>
+			<hr>
+			<h2>当前求和为：{{sum}}</h2>
+			<button @click="sum+=1">点我+1</button>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		Vue.config.productionTip = false
+
+		new Vue({
+			el:'#root',
+			data:{
+				isHot:true,
+				cname:'hot',
+				sum:0
+			},
+			computed:{
+				weatherText(){
+					return this.isHot ? '炎热' : '凉爽'
+				}
+			},
+			methods: {
+				change(){
+					this.isHot = !this.isHot
+					if(this.isHot) this.cname = 'hot'
+					else this.cname = 'cool'
+				},
+				/* add(){
+					this.sum += 1
+				} */
+			},
+		})
+
+	</script>
+</html>
