@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title></title>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+	<body>
+		<!-- 准备好一个容器-->
+		<div id="root">
+			姓：<input type="text" v-model="firstName"> <br/>
+			名：<input type="text" v-model="lastName"> <br/>
+			全名：<span>{{getFullName()}}</span>
+			全名：<span>{{getFullName()}}</span>
+			全名：<span>{{getFullName()}}</span>
+			<!-- <button @click="getFullName()">点我</button> -->
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		Vue.config.productionTip = false
+
+		new Vue({
+			el:'#root',
+			data:{
+				firstName:'张',
+				lastName:'三'
+			},
+			methods: {
+				getFullName(){
+					console.log('getFullName被调用了')
+					return this.firstName + '-' + this.lastName
+				}
+			},
+		})
+	</script>
+</html>

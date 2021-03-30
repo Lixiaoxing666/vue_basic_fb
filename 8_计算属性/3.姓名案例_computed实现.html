@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>姓名案例_computed实现</title>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+	<body>
+		<!-- 
+				1.计算属性：要显示的数据不存在，要通过已有的属性计算得来。
+				2.计算属性fullName，其实底层用到的是对象的setter和getter。
+				3.计算属性中get执行的时机：
+							(1).初始读取时会执行一次，得到初始值去显示。
+							(2).当依赖的数据发生改变时会被再次调用。
+				4.优势：与methods实现相比，内部有缓存机制（复用），效率更高。
+				5.备注：
+						1.计算属性是用于直接读取使用的，不要去调用
+						2.如果计算属性fullName以后要被修改，那么必须写set去响应修改，且set中要引起计算时依赖的数据发生改变
+		 -->
+		<!-- 准备好一个容器-->
+		<div id="root">
+			姓：<input type="text" v-model="firstName"> <br/>
+			名：<input type="text" v-model="lastName"> <br/>
+			全名：<input type="text" v-model="fullName">
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		Vue.config.productionTip = false
+
+		const vm = new Vue({
+			el:'#root',
+			data:{
+				firstName:'张',
+				lastName:'三',
+			},
+			computed:{
+				fullName:{
+					//get什么时候会被调用？1.有人读取fullName的时候; 2.依赖的数据发生变化时
+					get(){
+						console.log('fullName的get执行了')
+						return this.firstName + '-' + this.lastName
+					},
+					//set什么时候会被调用？有人修改fullName的时候
+					set(value){
+						const arr = value.split('-')
+						this.firstName = arr[0]
+						this.lastName = arr[1]
+					}
+				}
+			}
+		})
+		console.log(vm)
+	</script>
+</html>
