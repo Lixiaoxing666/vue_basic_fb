@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8" />
-		<title>列表过滤</title>
+		<title>列表过滤_watch实现</title>
 		<script type="text/javascript" src="../js/vue.js"></script>
 	</head>
 	<body>
@@ -10,7 +10,7 @@
 		<div id="root">
 			<input type="text" placeholder="请输入名字" v-model="keyWord">
 			<ul>
-				<li :key="item.id" v-for="(item,index) in persons">{{item.name}} -- {{item.age}} -- {{item.sex}}</li>
+				<li :key="item.id" v-for="(item,index) in fmtPersons">{{item.name}} -- {{item.age}} -- {{item.sex}}</li>
 			</ul>
 		</div>
 	</body>
@@ -21,16 +21,24 @@
 			el:'#root',
 			data:{
 				keyWord:'',
-				persons:[
+				persons:[ //原始人员列表
 					{id:'001',name:'马冬梅',age:19,sex:'女'},
 					{id:'002',name:'周冬雨',age:18,sex:'女'},
 					{id:'003',name:'周杰伦',age:21,sex:'男'},
 					{id:'004',name:'温兆伦',age:20,sex:'男'}
 				],
+				fmtPersons:[] //经过过滤之后的人员列表
 			},
+			
 			watch:{
-				keyWord(value){
-					console.log('keyWord边了，我要去persons中找到与关键词匹配的人',value)
+				keyWord:{
+					immediate:true,
+					handler(value){
+						// console.log('keyWord变了，我要去persons中找到与关键词匹配的人',value)
+						this.fmtPersons = this.persons.filter((p,index)=>{
+							return p.name.indexOf(value) !== -1 
+						})
+					}
 				}
 			}
 		})
