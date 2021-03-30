@@ -66,6 +66,8 @@
 					<a href="https://www.baidu.com" @click.once.stop.prevent="show5">点我展示信息5</a>
 				</div><br/><br/>
 
+				<!-- 键盘事件 -->
+				<h2>常用的按键盘事件</h2><br/><br/>
 				<input type="text" @keyup.enter="show6" placeholder="按下回车键提示信息"> <br/><br/>
 				<input type="text" @keyup.esc="show6" placeholder="按下esc键提示信息"><br/><br/>
 				<input type="text" @keyup.q="show6" placeholder="按下q键提示信息"><br/><br/>
@@ -74,7 +76,7 @@
 				<input type="text" @keyup.arrow-left="show6" placeholder="按下左箭头键提示信息"><br/><br/>
 				<input type="text" @keyup.a.b="show6" placeholder="按下a或b提示信息"><br/><br/>
 
-				<!-- 不常用 -->
+				<!-- 按键修饰符，不常用 -->
 				<!-- <input type="text" @keyup.alt.a="show6" placeholder="按下alt键的同时再按下a键提示信息">
 				<input type="text" @keyup.ctrl.a="show6" placeholder="按下ctrl键的同时再按下a键提示信息">
 				<input type="text" @keyup.shift.a="show6" placeholder="按下shift键的同时再按下a键提示信息">
