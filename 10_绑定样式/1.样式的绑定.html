@@ -20,6 +20,15 @@
 		<script type="text/javascript" src="../js/vue.js"></script>
 	</head>
 	<body>
+		<!-- 
+			1. 绑定class样式
+						写法:class="xxx" xxx可以是字符串、对象、数组
+							字符串写法适用于：类名不确定，要动态获取
+							对象写法适用于：类名确定，但不确定用不用
+							数组写法适用于：同时动态的绑定多个class样式
+			2. 绑定style样式
+						:style="{fontSize: xxx}"其中xxx是data中配置的属性
+		 -->
 		<!-- 准备好一个容器-->
 		<div id="root">
 
