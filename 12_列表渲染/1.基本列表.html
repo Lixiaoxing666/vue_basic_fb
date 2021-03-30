@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>基本列表</title>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+	<body>
+		<!-- 准备好一个容器-->
+		<div id="root">
+			<h2>人员列表</h2>
+			<ul>
+				<li :key="item.id" v-for="(item,index) in persons">{{item.name}} -- {{item.age}} --- {{item.sex}}</li>
+			</ul>
+
+			<hr/>
+
+			<h2>电动车信息</h2>
+			<ul>
+				<li :key="key" v-for="(value,key) in car">{{key}} --- {{value}}</li>
+			</ul>
+
+			<hr/>
+			<h2>测试遍历字符串（几乎不用）</h2>
+			<ul>
+				<li :key="index" v-for="(char,index) in str">{{index}} --- {{char}}</li>
+			</ul>
+
+			
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		Vue.config.productionTip = false
+		new Vue({
+			el:'#root',
+			data:{
+				persons:[
+					{id:'001',name:'老刘',age:18,sex:'男'},
+					{id:'002',name:'老邱',age:19,sex:'女'},
+					{id:'003',name:'老张',age:20,sex:'男'}
+				],
+				car:{
+					name:'雅迪',
+					price:2400,
+					color:'灰色'
+				},
+				str:'hello atguigu',
+			}
+		})
+	</script>
+</html>
