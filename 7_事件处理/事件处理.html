@@ -3,16 +3,23 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>事件处理</title>
+		<style>
+			.demo{
+				background-color: skyblue;
+				padding: 10px;
+			}
+		</style>
 		<script type="text/javascript" src="../js/vue.js"></script>
 	</head>
 	<body>
 		<!-- 
 			事件绑定注意事项：
 							1.事件的回调都配置在methods对象中
-							2.methods中的函数，都是被Vue所管理的函数，this的指向是vm 或 组件实例对象。
-							3.methods中的配置的函数，不要用箭头函数！！！！，否则this就不是vm了。
+							2.methods中的配置的函数，不要用箭头函数！！！！，否则this就不是vm了。
+							3.methods中的函数，都是被Vue所管理的函数，this的指向是vm 或 组件实例对象。
 							4.所有不被Vue所管理的函数（定时器的回调函数、ajax的回调函数、Promise的回调函数），最好写成箭头函数。
-				Vue中常用的按键别名：
+				
+			Vue中常用的按键别名：
 							回车 => enter
 							换行 => tab
 							退格 => delete (捕获“删除”和“退格”键)
@@ -22,10 +29,12 @@
 							下 => down
 							左 => left
 							右 => right
+
 				Vue中常用的事件修饰符：
 							阻止默认事件：stop
 							阻止冒泡：prevent
 							一次性事件：once
+
 				Vue中常用的按键修饰符(只有按下这些按键，同时再去按别的，才触发事件)--用的少：
 							ctrl
 							alt
@@ -35,30 +44,79 @@
 			<!-- 准备好一个容器-->
 			<div id="root">
 				<h2>欢迎来到{{school}}学习</h2>
-				<button v-on:click="show1">点我展示信息1</button>
-				<button @click="show2(600,$event)">点我展示信息2</button>
+				<!-- v-on绑定 -->
+				<button v-on:click="show1">点我展示信息1（v-on）</button> <br/><br/>
+
+				<!-- @绑定 -->
+				<button @click="show1">点我展示信息1（@绑定）</button>  <br/><br/>
+
+				<!-- 传参 -->
+				<button @click="show2(666,$event)">点我展示信息2（传递参数）</button>  <br/><br/>
+
+				<!-- 阻止默认事件 -->
+				<a href="https://www.baidu.com" @click.prevent="show3">点我展示信息3</a><br/><br/>
+
+				<!-- 阻止冒泡 -->
+				<div class="demo" @click="show4">
+					<button @click.stop="show4">点我展示信息4</button>
+				</div><br/><br/>
+
+				<!-- 同时阻止冒泡和默认事件 -->
+				<div class="demo" @click="show5">
+					<a href="https://www.baidu.com" @click.once.stop.prevent="show5">点我展示信息5</a>
+				</div><br/><br/>
+
+				<input type="text" @keyup.enter="show6" placeholder="按下回车键提示信息"> <br/><br/>
+				<input type="text" @keyup.esc="show6" placeholder="按下esc键提示信息"><br/><br/>
+				<input type="text" @keyup.q="show6" placeholder="按下q键提示信息"><br/><br/>
+				<input type="text" @keyup.13="show6" placeholder="按下回车键提示信息"><br/><br/>
+				<input type="text" @keyup.left="show6" placeholder="按下左箭头键提示信息"><br/><br/>
+				<input type="text" @keyup.arrow-left="show6" placeholder="按下左箭头键提示信息"><br/><br/>
+				<input type="text" @keyup.a.b="show6" placeholder="按下a或b提示信息"><br/><br/>
+
+				<!-- 不常用 -->
+				<!-- <input type="text" @keyup.alt.a="show6" placeholder="按下alt键的同时再按下a键提示信息">
+				<input type="text" @keyup.ctrl.a="show6" placeholder="按下ctrl键的同时再按下a键提示信息">
+				<input type="text" @keyup.shift.a="show6" placeholder="按下shift键的同时再按下a键提示信息">
+				<input type="text" @keyup.meta.a="show6" placeholder="按下meta键的同时再按下a键提示信息"> -->
+
 			</div>
 
 			<script type="text/javascript" >
 				Vue.config.productionTip = false //关闭生产环境的提示
 				
-				const vm = new Vue({
+				new Vue({
 					el:'#root',
 					data:{
 						school:'尚硅谷',
 					},
 					methods:{
-						show1(e){
-							console.log(e)
+						show1(event){
 							alert('信息1')
 						},
-						show2(number,e){
-							console.log(number,e)
+						show2(n,e){
 							alert('信息2')
 						},
+						show3(e){
+							//e.preventDefault() //靠程序员亲自组织默认事件
+							alert('信息3')
+						},
+						show4(e){
+							// e.stopPropagation(); //靠程序员自己阻止冒泡
+							alert('信息4')
+						},
+						show5(e){
+							// e.stopPropagation(); //靠程序员自己阻止冒泡
+							// e.preventDefault() //靠程序员亲自组织默认事件
+							alert('信息5')
+						},
+						show6(e){
+							console.log(e)
+							// if(e.keyCode !== 13) return
+							// alert(e.target.value)
+						}
 					}
 				})
-				console.log(vm)
 		</script>
 	</body>
 </html>
