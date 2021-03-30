@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>姓名案例_computed实现_简写</title>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+	<body>
+		<!-- 
+				什么时候计算属性可以简写？：
+					计算属性只用于读取，不会被修改，才可以简写。（即：只有get方法时，不需要set时,才可以简写）
+		-->
+		<!-- 准备好一个容器-->
+		<div id="root">
+			姓：<input type="text" v-model="firstName"> <br/>
+			名：<input type="text" v-model="lastName"> <br/>
+			全名：<span>{{fullName}}</span>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		Vue.config.productionTip = false
+
+		const vm = new Vue({
+			el:'#root',
+			data:{
+				firstName:'张',
+				lastName:'三',
+			},
+			computed:{
+				/* fullName:{
+					//get什么时候会被调用？1.有人读取fullName的时候; 2.依赖的数据发生变化时
+					get(){
+						console.log('fullName的get执行了')
+						return this.firstName + '-' + this.lastName
+					},
+				} */
+				fullName(){
+					console.log('fullName的get执行了')
+					return this.firstName + '-' + this.lastName
+				}
+			}
+		})
+		console.log(vm)
+	</script>
+</html>

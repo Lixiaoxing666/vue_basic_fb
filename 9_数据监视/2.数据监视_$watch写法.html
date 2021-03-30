@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>数据监视_$watch写法</title>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+	<body>
+		<!-- 准备好一个容器-->
+		<div id="root">
+			<h2>今天天气很{{ isHot ? '炎热' : '凉爽' }}</h2>
+			<button @click="changeWeather">切换天气</button>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		Vue.config.productionTip = false
+
+		const vm = new Vue({
+			el:'#root',
+			data:{
+				isHot:true
+			},
+			methods: {
+				changeWeather(){
+					this.isHot = !this.isHot
+				}
+			},
+		})
+
+		//对象写法
+		/* vm.$watch('isHot',{
+			immediate:true,
+			handler(n,o){
+				console.log('isHot被修改了',n,o)
+			}
+		}) */
+
+		//函数写法（简写）
+		vm.$watch('isHot',function(n,o){
+			console.log('isHot被修改了',n,o)
+		}) 
+
+	</script>
+</html>

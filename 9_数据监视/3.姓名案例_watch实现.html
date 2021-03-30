@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>姓名案例_watch实现</title>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+	<body>
+		<!-- 
+				computed和watch之间的区别：
+						1.只要是computed能完成的功能，watch都可以完成
+						2.watch能完成的功能，computed不一定能完成，例如：watch可以进行异步操作
+				总结出的规律：
+							1.所被Vue管理的函数，this的指向是vm 或 组件实例对象。
+							2.所有不被Vue所管理的函数（定时器的回调函数、ajax的回调函数、Promise的回调函数），最好写成箭头函数。
+		 -->
+		<!-- 准备好一个容器-->
+		<div id="root">
+			姓：<input type="text" v-model="firstName"> <br/>
+			名：<input type="text" v-model="lastName"> <br/>
+			全名：<input type="text" v-model="fullName">
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		Vue.config.productionTip = false
+
+		const vm = new Vue({
+			el:'#root',
+			data:{
+				firstName:'张',
+				lastName:'三',
+				fullName:''
+			},
+			watch:{
+				firstName:{
+					immediate:true,
+					handler(value){
+						console.log('firstName被改为：',value)
+						this.fullName = value + '-' + this.lastName
+					}
+				},
+				lastName(value){
+					console.log('lastName被改为：',value)
+					setTimeout(()=>{
+						this.fullName = this.firstName + '-' + value
+					},1000)
+				},
+				fullName(value){
+					const arr = value.split('-')
+					this.firstName = arr[0]
+					this.lastName = arr[1]
+				}
+			}
+		})
+
+		console.log(vm)
+	</script>
+</html>
