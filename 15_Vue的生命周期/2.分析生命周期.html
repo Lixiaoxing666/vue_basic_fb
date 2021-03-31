@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>分析生命周期流程</title>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+	<body>
+		<!-- 
+				$destroy销毁了什么？
+						1.vm并没有销毁，销毁的是vm上的一些功能
+						2.销毁后借助Vue开发者工具看不到任何信息。
+						3.之前绑定的事件还在不在？———— 在。
+						4.DOM Listener还在不在？———— 在。
+						5.Data Binding在不在？ ———— 不在。
+						6.自定义事件在不在？———— 不在。
+						7.watcher还在不在？ ———— 不在。
+
+		 -->
+		<!-- 准备好一个容器-->
+		<div id="root">
+			<h2 id="h2">当前求和为{{sum}}</h2>
+			<button @click="add">点我+1</button>
+			<button @click="death">销毁</button>
+			<input type="text" v-model="name">
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		Vue.config.productionTip = false
+
+		const vm = new Vue({
+			el:'#root',
+			data:{
+				sum:0,
+				name:'老刘'
+			},
+			methods: {
+				add(){
+					console.log('有人点了+')
+					this.sum += 1
+				},
+				death(){
+					this.$destroy()
+				}
+			},
+			watch:{
+				sum(){
+					console.log('sum被改了')
+				}
+			},
+			
+			//初始化之前（创建之前）
+			beforeCreate() {
+				console.log('beforeCreate')
+				// this.teacher = '程程'
+				// console.log(this)
+				// debugger;
+			},
+
+			//初始化完毕(创建完毕)
+			created() {
+				console.log('created')
+				// console.log(this)
+				// debugger;
+			},
+
+			//挂载之前
+			beforeMount() {
+				console.log('beforeMount')
+				// const h2 = document.getElementById('h2')
+				// h2.innerText = '哈哈'
+				// debugger;
+			},
+
+			//挂载完毕
+			mounted() {
+				console.log('mounted')
+				// const h2 = document.getElementById('h2')
+				// h2.innerText = '哈哈'
+			},
+
+			//将要销毁
+			beforeDestroy() {
+				console.log('beforeDestroy')
+				// console.log(this)
+				// debugger;
+			},
+
+			destroyed() {
+				console.log('destroyed')
+				window.a = this
+			},			
+		})
+
+	</script>
+</html>
