@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script type="text/javascript" >
+			let data  = {a:1,b:2,c:3}
+
+			let _data = {}
+
+			let vm = {}
+
+			Object.defineProperty(_data,'a',{
+				get(){
+					return data.a
+				},
+				set(value){
+					console.log('有人修改a了，我发现了，我去重新解析模板，渲染页面')
+				}
+			})
+			Object.defineProperty(_data,'b',{
+				get(){
+					return data.b
+				},
+				set(value){
+					console.log('有人修改b了，我发现了，我去重新解析模板，渲染页面')
+				}
+			})
+			Object.defineProperty(_data,'c',{
+				get(){
+					return data.c
+				},
+				set(value){
+					console.log('有人修改c了，我发现了，我去重新解析模板，渲染页面')
+				}
+			})
+			
+			Object.defineProperty(vm,'a',{
+				get(){
+					return _data.a
+				},
+				set(value){
+					console.log('你用vm在改a，我检测到了')
+					_data.a = value
+				}
+			})
+			Object.defineProperty(vm,'b',{
+				get(){
+					return _data.b
+				},
+				set(value){
+					console.log('你用vm在改b，我检测到了')
+				}
+			})
+			Object.defineProperty(vm,'c',{
+				get(){
+					return _data.c
+				},
+				set(value){
+					console.log('你用vm在改c，我检测到了')
+				}
+			})
+		
+			let arr = [1,2,3]
+
+			arr[0] = 99
+
+			
+		</script>
+	</body>
+</html>
