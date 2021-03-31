@@ -91,6 +91,23 @@
 				console.log('destroyed')
 				window.a = this
 			},			
+			
+			//将要更新
+			beforeUpdate() {
+				const h2 = document.getElementById('h2')
+				// console.log('数据',this.sum)
+				// console.log(h2.innerText)
+				// debugger;
+			},
+
+			//更新完毕
+			updated() {
+				const h2 = document.getElementById('h2')
+				console.log('updated')
+				console.log('数据',this.sum)
+				console.log(h2.innerText)
+				debugger;
+			},
 		})
 
 	</script>
