@@ -2,22 +2,25 @@
 <html>
 	<head>
 		<meta charset="UTF-8" />
-		<title>Document</title>
+		<title>Vue监测数据的原理</title>
 	</head>
 	<body>
 		<script type="text/javascript" >
-			let data  = {a:1,b:2,c:3}
+			//模拟Vue监测对象属性
+			let data  = {a:1,b:2,c:3} //程序员传入的data
 
-			let _data = {}
+			let _data = {} //vue收集到的
 
-			let vm = {}
+			let vm = {} //vm
 
+			//如下三行为了完成 data ===》 _data
 			Object.defineProperty(_data,'a',{
 				get(){
 					return data.a
 				},
 				set(value){
 					console.log('有人修改a了，我发现了，我去重新解析模板，渲染页面')
+					data.a = value
 				}
 			})
 			Object.defineProperty(_data,'b',{
@@ -26,6 +29,7 @@
 				},
 				set(value){
 					console.log('有人修改b了，我发现了，我去重新解析模板，渲染页面')
+					data.b = b
 				}
 			})
 			Object.defineProperty(_data,'c',{
@@ -34,9 +38,11 @@
 				},
 				set(value){
 					console.log('有人修改c了，我发现了，我去重新解析模板，渲染页面')
+					data.c = c
 				}
 			})
 			
+			//如下三行为了给vm身上追加属性
 			Object.defineProperty(vm,'a',{
 				get(){
 					return _data.a
@@ -52,6 +58,7 @@
 				},
 				set(value){
 					console.log('你用vm在改b，我检测到了')
+					_data.b = value
 				}
 			})
 			Object.defineProperty(vm,'c',{
@@ -60,12 +67,23 @@
 				},
 				set(value){
 					console.log('你用vm在改c，我检测到了')
+					_data.c = value
 				}
 			})
 		
-			let arr = [1,2,3]
+			//通过vm.xxx修改数据，最终最终修改的是data中的数据
+			// vm.a = 99 //最终是把data中的a改了
 
-			arr[0] = 99
+			/* ****************************************************************** */
+
+			let arr = [1,2,3]
+			
+			function push(x){
+				arr.push(x)
+				console.log('我检测到你改变了数据')
+			}
+
+			push(99)
 
 			
 		</script>
