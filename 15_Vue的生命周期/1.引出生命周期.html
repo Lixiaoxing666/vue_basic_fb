@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>引出生命周期</title>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+	<body>
+		<!-- 准备好一个容器-->
+		<div id="root">
+			<h2 :style="{opacity:tmd}">分手了怎么办？</h2>
+			<button @click="death">不活了</button>
+			<span>{{name}}</span>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		Vue.config.productionTip = false
+
+		const vm = new Vue({
+			el:'#root',
+			data:{
+				tmd:1,
+				name:'老刘'
+			},
+			methods: {
+				death(){
+					//销毁当前的vm
+					this.$destroy()
+					console.log('%',this)
+				}
+			},
+			//挂载完毕（vm真正“接手了”root容器，即：接手完毕）
+			mounted(){
+				console.log('*',this)
+				this.tid = setInterval(()=>{
+					console.log('定时器的回调执行了')
+					this.tmd -= 0.01
+					if(this.tmd <= 0 ) this.tmd = 1
+				},16)
+			},
+			
+			//将要销毁
+			beforeDestroy() {
+				console.log('我是vm，我即将变成一个植物人')
+				clearInterval(this.tid)
+			},
+		})
+
+	</script>
+</html>
