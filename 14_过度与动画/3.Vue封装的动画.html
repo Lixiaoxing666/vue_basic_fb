@@ -31,6 +31,13 @@
 		</style>
 	</head>
 	<body>
+		<!-- 
+			动画
+					1. 在目标元素外包裹<transition name="xxx">		
+					2. 编写样式：
+								进入动画样式：xxxx-enter-active
+								离开动画样式：xxxx-leave-active
+		-->
 		<div id="root">
 			<button @click="isShow = !isShow">切换</button> <br/><br/>
 			<transition name="qiuku">
