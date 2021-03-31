@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Vue实现动画</title>
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<style>
+			.picture{
+				width: 100px;
+			}
+			
+			.qiuku-leave-active{
+				animation: atguigu 1s linear;
+			}
+
+			.qiuku-enter-active{
+				animation: atguigu 1s linear reverse;
+			}
+
+			@keyframes atguigu{
+				0%{
+					transform: scale(1);
+				}
+				50%{
+					transform: scale(1.5);
+				}
+				100%{
+					transform: scale(0);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="root">
+			<button @click="isShow = !isShow">切换</button> <br/><br/>
+			<transition name="qiuku">
+				<img v-show="isShow" src="https://s3.ax1x.com/2020/12/13/reCaqg.jpg" class="picture">
+			</transition>
+		</div>
+
+		<script type="text/javascript" >
+			Vue.config.productionTip = false
+
+			new Vue({
+				el:'#root',
+				data:{
+					isShow:true
+				}
+			})
+			
+		</script>
+	</body>
+</html>

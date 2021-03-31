@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Vue实现过度</title>
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<style>
+			.picture{
+				width: 100px;
+			}
+			/* 离开的起点、来的终点 */
+			.qiuku-leave,.qiuku-enter-to{
+				opacity: 1;
+				transform: scale(1) rotate(0deg);
+			}
+			/* 离开的终点 、来的起点*/
+			.qiuku-leave-to,.qiuku-enter{
+				opacity: 0;
+				transform: scale(0) rotate(180deg);
+			}
+			/* 离开、来的具体过度规则 */
+			.qiuku-leave-active,.qiuku-enter-active{
+				transition: 1s all linear;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div id="root">
+			<button @click="isShow = !isShow">切换</button> <br/><br/>
+			<transition name="qiuku">
+				<img v-if="isShow" src="https://s3.ax1x.com/2020/12/13/reCaqg.jpg" class="picture">
+			</transition>
+		</div>
+
+		<script type="text/javascript" >
+			Vue.config.productionTip = false
+
+			new Vue({
+				el:'#root',
+				data:{
+					isShow:true
+				}
+			})
+			
+		</script>
+	</body>
+</html>
