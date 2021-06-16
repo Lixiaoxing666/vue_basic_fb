@@ -25,12 +25,12 @@
 			},
 			methods: {
 				death(){
-					//销毁当前的vm
+					//销毁当前的vm： this.$destroy()
 					this.$destroy()
 					console.log('%',this)
 				}
 			},
-			//挂载完毕（vm真正“接手了”root容器，即：接手完毕）
+			//mounted挂载完毕（vm真正“接手了”root容器，即：接手完毕）
 			mounted(){
 				console.log('*',this)
 				this.tid = setInterval(()=>{
@@ -40,7 +40,7 @@
 				},16)
 			},
 			
-			//将要销毁
+			//beforeDestroy将要销毁
 			beforeDestroy() {
 				console.log('我是vm，我即将变成一个植物人')
 				clearInterval(this.tid)

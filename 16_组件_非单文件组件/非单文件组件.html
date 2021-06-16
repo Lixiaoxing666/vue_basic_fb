@@ -12,23 +12,23 @@
 						二、注册组件
 						三、编写组件标签
 
-						一、如何定义一个组件(创建组件)？
-									使用Vue.extend(options)创建，传入的options和new Vue()时传入的那个options几乎一样，但也有点区别；
-									区别如下：
-											1.el不要写，为什么？ —————— 最终所有的组件都要经过一个vm的管理，由vm中的el决定服务哪个容器
-											2.data必须写成函数，为什么？ ———— 避免组件多次复用时，数据存在引用关系
-											3.template属性可以配置组件结构
-						
-						二、如何注册组件？
-											1.局部注册：靠new Vue的时候传入components
-											2.全局注册：靠Vue.component('组件名',组件)
+	一、如何定义一个组件(创建组件)？
+				使用Vue.extend(options)创建，传入的options和new Vue()时传入的那个options几乎一样，但也有点区别；
+				区别如下：
+						1.el不要写，为什么？ —————— 最终所有的组件都要经过一个vm的管理，由vm中的el决定服务哪个容器
+						2.data必须写成函数，为什么？ ———— 避免组件多次复用时，数据存在引用关系
+						3.template属性可以配置组件结构
 
-						三、编写组件标签，有几种写法？
-											1.<School></School> -- 推荐
-											2.<School/> -- 推荐
-											3.<school></school>
-											4.<school/>
-									备注：若脱离Vue脚手架，则自闭和组件标签有bug
+	二、如何注册组件？
+						1.局部注册：靠new Vue的时候传入components
+						2.全局注册：靠Vue.component('组件名',组件)
+
+	三、编写组件标签，有几种写法？
+						1.<School></School> -- 推荐
+						2.<School/> -- 推荐
+						3.<school></school>
+						4.<school/>
+				备注：若脱离Vue脚手架，则自闭和组件标签有bug
 
 		-->
 		<!-- 准备好一个容器-->
@@ -102,7 +102,7 @@
 
 		new Vue({
 			el:'#root',
-			//注册组件(局部注册)用的多
+			//TODO 注册组件(局部注册)用的多
 			components:{
 				Student
 			}

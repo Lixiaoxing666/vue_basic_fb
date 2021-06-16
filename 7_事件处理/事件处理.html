@@ -44,20 +44,20 @@
 			<!-- 准备好一个容器-->
 			<div id="root">
 				<h2>欢迎来到{{school}}学习</h2>
-				<!-- v-on绑定 -->
+				<!-- todo v-on绑定 -->
 				<button v-on:click="show1">点我展示信息1（v-on）</button> <br/><br/>
 
-				<!-- @绑定 -->
+				<!-- todo v-on:的简写方式：@绑定 -->
 				<button @click="show1">点我展示信息1（@绑定）</button>  <br/><br/>
 
-				<!-- 传参 -->
+				<!-- TODO 传参： 有参数时传event: 写$event-->
 				<button @click="show2(666,$event)">点我展示信息2（传递参数）</button>  <br/><br/>
 
-				<!-- 阻止默认事件 -->
+				<!-- TODO .prevent:阻止默认事件:是阻止其跳转到百度 不是阻止alert -->
 				<a href="https://www.baidu.com" @click.prevent="show3">点我展示信息3</a><br/><br/>
 
-				<!-- 阻止冒泡 -->
-				<div class="demo" @click="show4">
+				<!-- TODO .stop阻止冒泡:阻止他弹两次：因为button按钮是div的子标签 -->
+				<div class="demo" @click.stop="show4">
 					<button @click.stop="show4">点我展示信息4</button>
 				</div><br/><br/>
 
@@ -66,8 +66,11 @@
 					<a href="https://www.baidu.com" @click.once.stop.prevent="show5">点我展示信息5</a>
 				</div><br/><br/>
 
-				<!-- 键盘事件 -->
-				<h2>常用的按键盘事件</h2><br/><br/>
+				<!-- TODO 常用的按键盘事件  注意别写在button里（没用） 写在Input输入框里
+				todo @keydown（键盘按下时触发），@keypress(键盘按住时触发)，@keyup(键盘弹起)
+				todo 获取按键的键码 e.keyCode
+ 				-->
+				<h2>TODO 常用的按键盘事件</h2><br/><br/>
 				<input type="text" @keyup.enter="show6" placeholder="按下回车键提示信息"> <br/><br/>
 				<input type="text" @keyup.esc="show6" placeholder="按下esc键提示信息"><br/><br/>
 				<input type="text" @keyup.q="show6" placeholder="按下q键提示信息"><br/><br/>
@@ -93,6 +96,7 @@
 						school:'尚硅谷',
 					},
 					methods:{
+					    //TODO 没传参数时默认可以收到event
 						show1(event){
 							alert('信息1')
 						},
@@ -100,9 +104,10 @@
 							alert('信息2')
 						},
 						show3(e){
-							//e.preventDefault() //靠程序员亲自组织默认事件
+							// e.preventDefault() //靠程序员亲自组织默认事件
 							alert('信息3')
 						},
+						//阻止冒泡
 						show4(e){
 							// e.stopPropagation(); //靠程序员自己阻止冒泡
 							alert('信息4')

@@ -7,14 +7,14 @@
 	</head>
 	<body>
 		<!-- 
-					收集表单数据：
-						若是：<input type="text"/>，则v-model收集的是value值，用户输入的就是value值了
-						若是：<input type="radio"/>，则v-model收集的是value值，且要给标签配置value值
-						若是：<input type="checkbox"/>
-								1.没有配置input的value属性，那么收集的的就是checked（勾选 or 未勾选，是布尔值）
-								2.配置input的value属性:
-											(1).v-model的初始值是非数组，那么收集的的就是checked（勾选 or 未勾选，是布尔值）
-											(2).v-model的初始值是数组，那么收集的的就是value组成的数组
+收集表单数据：
+	若是：<input type="text"/>，则v-model收集的是value值，用户输入的就是value值了
+	若是：<input type="radio"/>，则v-model收集的是value值，且要给标签配置value值
+	若是：<input type="checkbox"/>
+			1.没有配置input的value属性，那么收集的的就是checked（勾选 or 未勾选，是布尔值）
+			2.配置input的value属性:
+						(1).v-model的初始值是非数组，那么收集的的就是checked（勾选 or 未勾选，是布尔值）
+						(2).v-model的初始值是数组，那么收集的的就是value组成的数组
 		-->
 		<!-- 准备好一个容器-->
 		<div id="root">

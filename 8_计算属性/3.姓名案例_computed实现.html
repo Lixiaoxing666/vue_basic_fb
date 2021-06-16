@@ -7,15 +7,16 @@
 	</head>
 	<body>
 		<!-- 
-				1.计算属性：要显示的数据不存在，要通过已有的属性计算得来。
-				2.计算属性fullName，其实底层用到的是对象的setter和getter。
-				3.计算属性中get执行的时机：
+		todo 1.计算属性computed：要显示的数据不存在，要通过已有的属性计算得来。
+		todo 2.计算属性fullName，其实底层用到的是对象的setter和getter。
+		todo 3.计算属性中get执行的时机：
 							(1).初始读取时会执行一次，得到初始值去显示。
 							(2).当依赖的数据发生改变时会被再次调用。
 				4.优势：与methods实现相比，内部有缓存机制（复用），效率更高。
 				5.备注：
 						1.计算属性是用于直接读取使用的，不要去调用
-						2.如果计算属性fullName以后要被修改，那么必须写set去响应修改，且set中要引起计算时依赖的数据发生改变
+						2.如果计算属性fullName以后要被修改，那么必须写set去响应修改，且set中要
+						引起计算时依赖的数据发生改变
 		 -->
 		<!-- 准备好一个容器-->
 		<div id="root">
@@ -34,15 +35,21 @@
 				firstName:'张',
 				lastName:'三',
 			},
+            //1.计算属性：computed
+			/*官网：计算属性的结果会被缓存，除非依赖的响应式 property 变化
+			才会重新计算。注意，如果某个依赖 (比如非响应式 property)
+			在该实例范畴之外，则计算属性是不会被更新的。*/
 			computed:{
 				fullName:{
-					//get什么时候会被调用？1.有人读取fullName的时候; 2.依赖的数据发生变化时
+					//todo get什么时候会被调用？1.有人读取fullName的时候; 2.依赖的数据发生变化时
 					get(){
 						console.log('fullName的get执行了')
 						return this.firstName + '-' + this.lastName
 					},
-					//set什么时候会被调用？有人修改fullName的时候
+					//todo set什么时候会被调用？有人修改fullName的时候
+					//todo value是fullName绑定的数据
 					set(value){
+                        //将fullName的数据根据‘-’分为两部分 arr[0]第一部分 arr[1]第二部分
 						const arr = value.split('-')
 						this.firstName = arr[0]
 						this.lastName = arr[1]

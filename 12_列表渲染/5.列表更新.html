@@ -13,7 +13,7 @@
 				3. 数组中也实现了监视: 重写数组一系列更新元素的方法，做了两件事：
 							(1).调用原生对应的方法对数组进行处理
 							(2).去更新界面
-				4.在Vue修改数组中的某个元素，一定要用如下api，不可以直接arr[索引值]去操作
+		TODO 4.在Vue修改数组中的某个元素，一定要用如下api，不可以直接arr[索引值]去操作
 							push()
 							pop()
 							shift()
@@ -68,10 +68,15 @@
 			},
 			methods: {
 				updateDongMei(){
+			//TODO 4.在Vue修改数组中的某个元素，一定要用如下api，不可以直接arr[索引值]去操作
 					// this.persons[0].name = '马大姐' //奏效
 					// this.persons[0].age = 90 //奏效
 					// this.persons[0].sex = '未知' //奏效
 					// this.persons[0] = {id:'001',name:'马大姐',age:90,sex:'未知'} //不奏效
+					/*todo splice() 方法通过删除或替换现有元素或者原地添加新的元素
+					 来修改数组,并以数组形式返回被修改的内容。此方法会改变原数组。
+					 TODO splice：第一个数字代表操作哪（数组从0开始） 第二个数字0代表插入 1代表替换
+					 示例见最下方*/
 					this.persons.splice(0,1,{id:'001',name:'马大姐',age:90,sex:'未知'}) //奏效
 					console.log(this.persons)
 				}
@@ -79,3 +84,15 @@
 		})
 	</script>
 </html>
+<!--TODO splice示例：  第一个数字代表操作哪（数组从0开始） 第二个数字0代表插入 1代表替换
+const months = ['Jan', 'March', 'April', 'June'];
+months.splice(1, 0, 'Feb');
+// inserts at index 1
+console.log(months);
+// expected output: Array ["Jan", "Feb", "March", "April", "June"]
+
+months.splice(4, 1, 'May');
+// replaces 1 element at index 4
+console.log(months);
+// expected output: Array ["Jan", "Feb", "March", "April", "May"]
+-->

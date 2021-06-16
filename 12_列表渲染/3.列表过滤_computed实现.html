@@ -31,7 +31,11 @@
 			},
 			computed:{
 				fmtPersons(){
+                    //todo get什么时候会被调用？1.有人读取fullName的时候; 2.依赖的数据发生变化时
 					return this.persons.filter((p)=>{
+                        //TODO indexOf() 方法返回调用它的 String 对象中第一次出现的指定值的索引，
+                        // 从 fromIndex 处进行搜索。如果未找到该值，则返回 -1。
+                        //		也就是返回的是name中有value值的 那些项
 						return p.name.indexOf(this.keyWord) !== -1
 					})
 				}

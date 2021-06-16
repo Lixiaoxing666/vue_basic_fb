@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>初识Vue</title>
+		<!--TODO head里引入vue.js-->
 		<script type="text/javascript" src="../js/vue.js"></script>
 	</head>
 	<body>
@@ -25,7 +26,7 @@
 		</div>
 
 		<script type="text/javascript" >
-			Vue.config.productionTip = false //关闭生产环境的提示
+			Vue.config.productionTip = false //todo 关闭生产环境的提示
 
 			//创建一个Vue实例，要想使用Vue必须创建这个实例，且传入配置对象
 			new Vue({
@@ -37,6 +38,9 @@
 						name:'atguigu',
 						address:'宏福科技园',
 						subject:function(){return '前端'}
+						/*或者写成：subject:()=>{
+                                    return 'java php '
+                                } */
 					}
 				}
 			})

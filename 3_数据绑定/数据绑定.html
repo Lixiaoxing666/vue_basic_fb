@@ -7,28 +7,37 @@
 	</head>
 	<body>
 		<!-- 
-			数据绑定
-					1.单向数据绑定(v-bind)：数据只能从data流向页面
-					2.双向数据绑定(v-model)：数据不仅能从data流向页面，还可以从页面流向data
-						备注：
-							1.双向数据绑定一般都是针对表单类元素（能输入，即：有value值）
-							2.v-model:value 可以简写为 v-model，因为v-model默认收集value值。
-							3.v-model只有应用在输入类节点，且切点有value值时才有意义
+	todo 数据绑定
+	  todo  1.单向数据绑定(v-bind)：数据只能从data流向页面 可以简写为冒号 :
+	 TODO  v-bind:可以自定义key 如<Demo ref="test" :xuexiao="school"/> key为xuexiao 值绑定school变量
+	 用法：https://cn.vuejs.org/v2/api/?#v-bind
+		动态地绑定一个或多个 attribute，或一个组件 prop 到表达式。
+		在绑定 class 或 style attribute 时，支持其它类型的值，如数组或对象。
+		可以通过下面的教程链接查看详情。在绑定 prop 时，prop 必须在子组件中
+		声明。可以用修饰符指定不同的绑定类型。没有参数时，可以绑定到一个包
+		含键值对的对象。注意此时 class 和 style 绑定不支持数组和对象。
+			2.双向数据绑定(v-model)：数据不仅能从data流向页面，还可以从页面流向data
+				备注：
+			TODO 1.双向数据绑定一般都是针对表单类元素（能输入，即：有value值）
+			TODO 2.v-model:value 可以简写为 v-model，因为v-model默认收集value值。
+	TODO 3.v-model只有应用在输入类节点，且节点有value值时才有意义（v-model就是绑定的value属性）
+	TODO 如Input  但是诸如<h1> 或 <span>是不行的 没有输入项的不能绑定v-model会报错
 		-->
 		<!-- 准备好一个容器-->
 		<div id="root">
-			<!-- 普通写法 -->
+			<!-- TODO 普通写法 -->
 			<!-- 
 				单向数据绑定(v-bind)：<input type="text" v-bind:value="name"> <br/><br/>
 				双向数据绑定(v-model)：<input type="text" v-model:value="name">
 			-->
-
-			<!-- 简写方式 -->
+			<!-- TODO 简写方式 -->
 			单向数据绑定(v-bind)：<input type="text" :value="name"> <br/><br/>
 			双向数据绑定(v-model)：<input type="text" v-model="name">
 
 			<!-- 如下代码是错误的 -->
 			<!-- <h2 v-model:w="name">你好</h2> -->
+
+
 		</div>
 
 		<script type="text/javascript" >

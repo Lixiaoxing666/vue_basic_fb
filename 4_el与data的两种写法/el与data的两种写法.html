@@ -7,14 +7,21 @@
 	</head>
 	<body>
 		<!-- 
-			data与el的2种写法：
-					1.el有2种写法：
+			TODO data与el的2种写法：
+					1.el有2种写法：(第一种常用）
 							(1).new Vue时候直接传递el属性。
 							(2).先new Vue 再通过：vm.$mount('#root')指定el属性。
 					2.data有2种写法：
 							(1).对象式: 非组件化编码时:可以写对象，也可以写函数。
-							(2).函数式：组件化编码时：必须使用函数式的data，否则会出问题。
-					Vue中的一个最最重要的原则：
+				TODO       (2).函数式：组件化编码时：必须使用函数式的data，否则会出问题。
+				即data(){
+					console.log(this)
+					return {
+					name:'尚硅谷',
+					}
+				}
+				或data:function(){ return{} }
+					TODO Vue中的一个最最重要的原则：
 							由Vue所管理的函数，一定不要写成箭头函数，一旦写了箭头函数，this就不是vm了。
 		-->
 
@@ -25,7 +32,6 @@
 
 		<script type="text/javascript" >
 			Vue.config.productionTip = false //关闭生产环境的提示
-			
 			//el的写法一
 			/* new Vue({
 				el:'#root',
@@ -53,7 +59,7 @@
 				}
 			}) */
 
-			//data的写法二
+			//TODO data的写法二：函数式
 			new Vue({
 				el:'#root',
 				data(){

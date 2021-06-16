@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<!-- 
-				监视属性watch：
+				TODO 监视属性watch：
 					1.当被监视的属性变化时, 回调函数自动调用, 进行相关操作
 					2.监视的属性必须存在，才能进行监视！！
 					3.监视的两种写法：
@@ -35,18 +35,18 @@
 				}
 			},
 			watch:{
-				//isHot监视的完整写法
-				/* isHot:{
+				//TODO isHot监视的完整写法
+				 isHot:{
 					immediate:true, //让监视的回调立即执行一次
 					handler(newValue,oldValue){
 						console.log('isHot的值被人改了',newValue,oldValue)
 					}
-				} */
+				}
 
-				//isHot监视的简写
+				/*//isHot监视的简写
 				isHot(newValue,oldValue){
 					console.log('isHot的值被人改了',newValue,oldValue)
-				}
+				}*/
 			}
 		})
 		console.log(vm)

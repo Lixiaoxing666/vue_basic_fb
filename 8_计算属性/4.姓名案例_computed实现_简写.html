@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<!-- 
-				什么时候计算属性可以简写？：
+				什么时候计算属性computed可以简写？：
 					计算属性只用于读取，不会被修改，才可以简写。（即：只有get方法时，不需要set时,才可以简写）
 		-->
 		<!-- 准备好一个容器-->
@@ -29,13 +29,14 @@
 			},
 			computed:{
 				/* fullName:{
-					//get什么时候会被调用？1.有人读取fullName的时候; 2.依赖的数据发生变化时
+					//TODO get什么时候会被调用？1.有人读取fullName的时候; 2.依赖的数据发生变化时
 					get(){
 						console.log('fullName的get执行了')
 						return this.firstName + '-' + this.lastName
 					},
 				} */
 				fullName(){
+                    //TODO 即简写方式省略掉了get()声明  （即：只有get方法时，不需要set时,才可以简写）
 					console.log('fullName的get执行了')
 					return this.firstName + '-' + this.lastName
 				}

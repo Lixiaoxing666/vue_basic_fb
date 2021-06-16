@@ -34,6 +34,7 @@
 				],
 			},
 			computed:{
+				//TODO get什么时候会被调用？1.有人读取fullName的时候; 2.依赖的数据发生变化时
 				fmtPersons(){
 					//过滤
 					const arr =  this.persons.filter((p)=>{
@@ -41,7 +42,9 @@
 					})
 					//能进入判断就证明：需要排序
 					if(this.sortType){
+				//https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
 						arr.sort((a,b)=>{
+                            //TODO a-b:升序  b-a：降序
 							return this.sortType == 1 ? a.age-b.age : b.age-a.age
 						})
 					}
