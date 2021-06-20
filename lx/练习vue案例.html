@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>初识Vue</title>
+    <!--TODO 引入-->
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <style>
+        .demo{
+            background-color: skyblue;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+        <!-- 准备一个容器 -->
+        <div id="root">
+            姓：<input type="text" v-model="firstName"> <br/>
+            名：<input type="text" v-model="lastName"> <br/>
+            展示：<input style="height: 100px;width: auto;font-size: 80px;"
+                      class="demo" v-model="fullName"
+        />
+        </div>
+        <script type="text/javascript" >
+            Vue.config.productionTip = false //todo 关闭生产环境的提示
+
+                //创建一个Vue实例，要想使用Vue必须创建这个实例，且传入配置对象
+                    new Vue({
+                        el: '#root',
+                        data:{
+                            firstName:'1',
+                            lastName:'2',
+                        },
+                        methods:{
+                            getFullName(){
+                                return this.firstName + this.lastName
+                            }
+
+                        },
+                        computed:{
+                            fullName: {
+                                //todo get什么时候会被调用？1.有人读取fullName的时候; 2.依赖的数据发生变化时
+                                get() {
+                                    console.log('fullName的get执行了')
+                                    return this.firstName + '-' + this.lastName
+                                },
+                                set(value){
+                                    const arr = value.split('-')
+                                    this.firstName = arr[0]
+                                    this.lastName = arr[1]
+                                }
+                            }
+                        }
+                    })
+          </script>
+</body>
